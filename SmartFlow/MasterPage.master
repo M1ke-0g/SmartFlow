@@ -1,0 +1,280 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="SmartFlow.MasterPage" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SmartFlow - Sistema de Gestión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #6c757d;
+            --success-color: #198754;
+            --danger-color: #dc3545;
+            --info-color: #0dcaf0;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(135deg, #0d6efd 0%, #0b5cf8 100%);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .navbar-brand i {
+            margin-right: 0.5rem;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #fff !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #fff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Main Content */
+        main {
+            min-height: calc(100vh - 140px);
+            padding: 2rem 0;
+        }
+
+        /* Cards */
+        .card {
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 10px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            border-radius: 10px 10px 0 0 !important;
+            background: linear-gradient(135deg, #0d6efd 0%, #0b5cf8 100%);
+            color: white;
+        }
+
+        /* Buttons */
+        .btn {
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #0d6efd 0%, #0b5cf8 100%);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(13, 110, 253, 0.3);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+            border: none;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #198754 0%, #157347 100%);
+            border: none;
+        }
+
+        /* Table */
+        .table {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .table thead {
+            background: linear-gradient(135deg, #0d6efd 0%, #0b5cf8 100%);
+            color: white;
+        }
+
+        .table tbody tr {
+            transition: all 0.3s ease;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f1f3f5;
+        }
+
+        /* Form */
+        .form-control, .form-select {
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+        }
+
+        /* Alert */
+        .alert {
+            border-radius: 8px;
+            border: none;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #0d6efd 0%, #0b5cf8 100%);
+            color: white;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #0d6efd 0%, #0b5cf8 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .stat-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            margin: 0;
+            opacity: 0.9;
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="Default.aspx">
+                    <i class="fas fa-chart-line"></i>SmartFlow
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="Default.aspx"><i class="fas fa-home"></i> Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Usuarios.aspx"><i class="fas fa-users"></i> Usuarios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Servicios.aspx"><i class="fas fa-cog"></i> Servicios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Ordenes.aspx"><i class="fas fa-clipboard-list"></i> Órdenes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Alertas.aspx"><i class="fas fa-bell"></i> Alertas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Monitoreo.aspx"><i class="fas fa-tachometer-alt"></i> Monitoreo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Soporte.aspx"><i class="fas fa-headset"></i> Soporte</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="container-fluid">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <h5><i class="fas fa-shield-alt"></i> SmartFlow</h5>
+                        <p>Sistema de gestión completo para tu negocio</p>
+                    </div>
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <h5>Características</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="#" class="text-white-50">Gestión de Usuarios</a></li>
+                            <li><a href="#" class="text-white-50">Control de Órdenes</a></li>
+                            <li><a href="#" class="text-white-50">Monitoreo en Tiempo Real</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Contacto</h5>
+                        <p class="text-white-50">
+                            <i class="fas fa-envelope"></i> info@smartflow.com<br>
+                            <i class="fas fa-phone"></i> +1 (555) 123-4567
+                        </p>
+                    </div>
+                </div>
+                <hr class="border-secondary">
+                <div class="text-center text-white-50">
+                    <p>&copy; 2024 SmartFlow. Todos los derechos reservados.</p>
+                </div>
+            </div>
+        </footer>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
